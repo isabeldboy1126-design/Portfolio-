@@ -1,0 +1,344 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Business Growth Strategist — Portfolio</title>
+  <meta name="description" content="Turning offers into client magnets. I help businesses transform ads, funnels, and scripts into consistent paying clients." />
+  <style>
+    :root{
+      --blue:#1A1F36;        /* Deep Navy */
+      --gold:#D4AF37;        /* Metallic Gold */
+      --ink:#0b1222;         /* Even darker for headings */
+      --muted:#6B7280;       /* Grey for body copy */
+      --bg:#ffffff;
+      --card:#f8fafc;
+      --ring:rgba(212,175,55,0.25);
+      --radius:18px;
+      --shadow: 0 10px 25px rgba(0,0,0,.06), 0 2px 6px rgba(0,0,0,.05);
+    }
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{color:inherit; text-decoration:none;}
+    img{max-width:100%; display:block;}
+    .container{width:min(1120px, 92%); margin-inline:auto;}
+    .stack{display:flex; flex-direction:column; gap:16px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:14px 18px; border-radius:999px; font-weight:700; letter-spacing:.2px;
+      transition:transform .06s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+      border:1px solid transparent; text-align:center; white-space:nowrap;
+    }
+    .btn:active{transform:translateY(1px);}
+    .btn-primary{background:var(--gold); color:#0b0b0b; box-shadow:0 6px 20px var(--ring);}
+    .btn-primary:hover{filter:brightness(0.96);}
+    .btn-outline{background:transparent; border-color:rgba(255,255,255,.35); color:#ffffff;}
+    .btn-outline.dark{border-color:#2c3653; color:var(--ink);}
+    .btn-outline:hover{background:rgba(255,255,255,.08);}
+    .btn-dark-outline{
+      background:transparent; border:1px solid #2c3653; color:#1A1F36;
+    }
+    /* ======= NAV ======= */
+    .nav{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(10px);
+      background:linear-gradient(180deg, rgba(26,31,54,.88), rgba(26,31,54,.88));
+      border-bottom:1px solid rgba(212,175,55,.18);
+    }
+    .nav .row{display:flex; align-items:center; justify-content:space-between; padding:12px 0;}
+    .brand{display:flex; align-items:center; gap:10px; color:#fff; font-weight:800; letter-spacing:.3px;}
+    .brand .dot{width:12px; height:12px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 4px rgba(212,175,55,.18);}
+    .navlinks{display:flex; gap:18px; align-items:center;}
+    .navlinks a{color:#e8ecff; font-weight:600; opacity:.9;}
+    .navlinks a:hover{opacity:1;}
+    .menu-toggle{display:none; background:transparent; border:0; color:#fff; font-size:28px; line-height:1;}
+    @media (max-width:780px){
+      .menu-toggle{display:block;}
+      .navlinks{display:none; position:absolute; top:56px; right:4%; background:#101529; padding:10px 12px; border-radius:12px; box-shadow:var(--shadow); border:1px solid rgba(212,175,55,.18);}
+      .navlinks.show{display:flex; flex-direction:column; min-width:210px;}
+      .navlinks a{padding:10px 8px; width:100%;}
+    }
+
+    /* ======= HERO ======= */
+    .hero{
+      background:
+        radial-gradient(1000px 450px at 50% -10%, rgba(212,175,55,.15), transparent 60%),
+        linear-gradient(180deg, #0e1430, #0a0f22 35%, #0a0f22 100%);
+      color:#fff; padding:72px 0 56px; position:relative; overflow:hidden;
+    }
+    .hero .eyebrow{color:rgba(255,255,255,.72); font-weight:600; letter-spacing:.28px; font-size:14px;}
+    .hero h1{
+      margin:10px 0 12px; font-size: clamp(32px, 5vw, 56px);
+      line-height:1.05; font-weight:900; letter-spacing:-.5px;
+    }
+    .hero p{
+      color:#c9d3ff; font-size: clamp(16px, 2.5vw, 20px); line-height:1.6; max-width:780px;
+    }
+    .hero .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;}
+    .hero .card{
+      margin-top:30px; background:#0f1736; border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); padding:16px; color:#b9c3ff;
+    }
+
+    /* ======= SECTIONS ======= */
+    section{padding:64px 0;}
+    section .kicker{color:var(--gold); font-weight:800; letter-spacing:.25px; text-transform:uppercase; font-size:12px;}
+    section h2{margin:6px 0 10px; font-size: clamp(26px, 4.2vw, 38px); line-height:1.15;}
+    section p.lead{color:var(--muted); font-size:18px; max-width:780px; line-height:1.7;}
+
+    /* ======= PORTFOLIO ======= */
+    #portfolio{scroll-margin-top:88px; background:linear-gradient(180deg, #fff, #fafbff);}
+    .grid{
+      display:grid; gap:16px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width:640px){ .grid{grid-template-columns: repeat(2, 1fr);} }
+    @media (min-width:1024px){ .grid{grid-template-columns: repeat(4, 1fr);} }
+    .card{
+      background:var(--card); border:1px solid #e9eef7; border-radius:14px; overflow:hidden; box-shadow:var(--shadow);
+      display:flex; flex-direction:column; min-height:100%;
+      transition:transform .12s ease, box-shadow .2s ease;
+    }
+    .card:hover{transform:translateY(-2px); box-shadow:0 14px 30px rgba(0,0,0,.08);}
+    .thumb{
+      aspect-ratio: 16 / 10; background:linear-gradient(135deg, rgba(26,31,54,.06), rgba(212,175,55,.12));
+      display:grid; place-items:center; color:#5b668a; font-weight:800; letter-spacing:.3px; font-size:14px;
+    }
+    .thumb .dot{width:8px;height:8px;border-radius:999px;background:var(--gold);margin-right:8px;display:inline-block;}
+    .card-body{padding:14px 14px 16px; display:flex; gap:8px; flex-direction:column;}
+    .caption{font-weight:700;}
+    .caption small{display:block; color:#6b738d; font-weight:600;}
+
+    /* ======= SERVICES ======= */
+    #services{scroll-margin-top:88px;}
+    .bullets{display:grid; gap:12px; grid-template-columns: 1fr;}
+    @media (min-width:720px){ .bullets{grid-template-columns: 1fr 1fr;}}
+    .bullet{
+      background:#fff; border:1px solid #e8edf6; border-radius:14px; padding:14px 14px 14px 48px; position:relative; box-shadow:var(--shadow);
+    }
+    .bullet:before{
+      content:""; position:absolute; left:14px; top:14px; width:20px; height:20px; border-radius:6px;
+      background:var(--gold);
+      box-shadow:0 0 0 6px rgba(212,175,55,.18);
+    }
+
+    /* ======= TESTIMONIALS ======= */
+    #testimonials{scroll-margin-top:88px; background:linear-gradient(180deg, #fafbff, #ffffff);}
+    .quotes{
+      display:grid; gap:14px; grid-template-columns:1fr;
+    }
+    @media (min-width:900px){ .quotes{grid-template-columns:1fr 1fr;}}
+    .quote{
+      background:#fff; border:1px solid #e9eef7; border-radius:14px; padding:18px; box-shadow:var(--shadow);
+      color:#1d2340; font-size:16px; line-height:1.6;
+    }
+    .who{margin-top:10px; color:#5e6480; font-weight:700; font-size:14px;}
+
+    /* ======= CTA ======= */
+    #contact{scroll-margin-top:88px; padding:72px 0 88px; position:relative;
+      background:
+        radial-gradient(800px 300px at 50% -10%, rgba(212,175,55,.18), transparent 60%),
+        linear-gradient(180deg, #0a0f22, #0a0f22);
+      color:#fff;
+      border-top:1px solid rgba(212,175,55,.22);
+    }
+    .cta-wrap{
+      background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.08);
+      border-radius:20px; padding:22px; box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .cta-wrap h3{font-size: clamp(22px, 3.6vw, 32px); margin:0 0 6px;}
+    .cta-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
+
+    /* ======= UTIL ======= */
+    .sr{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+    .spacer-xxs{height:8px;}
+    .spacer-xs{height:12px;}
+    .spacer-sm{height:18px;}
+    .spacer-md{height:26px;}
+    .spacer-lg{height:36px;}
+    .center{text-align:center;}
+    .gold{color:var(--gold);}
+    footer.small{color:#98a3c7; font-size:13px; padding:12px 0 36px;}
+  </style>
+</head>
+<body>
+
+  <!-- ======= NAV ======= -->
+  <header class="nav" role="banner" aria-label="Primary">
+    <div class="container row">
+      <a class="brand" href="#home">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Growth Strategist</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-controls="nav-menu" aria-expanded="false">☰</button>
+      <nav id="nav-menu" class="navlinks" role="navigation" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======= HERO ======= -->
+  <section id="home" class="hero" aria-label="Hero">
+    <div class="container">
+      <div class="stack">
+        <span class="eyebrow">Strategic Growth • Offers • Funnels</span>
+        <h1>Turning Offers Into <span class="gold">Client Magnets</span></h1>
+        <p>I help businesses transform ads, funnels, and scripts into consistent paying clients.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#portfolio" aria-label="See my work">See My Work</a>
+          <a class="btn btn-outline" href="#services" aria-label="Learn what I do">Learn What I Do</a>
+        </div>
+        <div class="card" aria-hidden="true">
+          <strong style="color:#e9edff">Proof-point highlights</strong>
+          <ul style="margin:8px 0 0 18px; padding:0; color:#aab5e7;">
+            <li>Ad script revamps that lift CTR & lead quality</li>
+            <li>Funnels that convert traffic into discovery calls</li>
+            <li>Sales scripts that feel human — not pushy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= PORTFOLIO ======= -->
+  <section id="portfolio" aria-label="Selected Work">
+    <div class="container">
+      <span class="kicker">Portfolio</span>
+      <h2>Selected Work</h2>
+      <p class="lead">A few representative projects. Replace these with your real case studies and links.</p>
+      <div class="spacer-sm"></div>
+
+      <div class="grid">
+        <!-- Card 1 -->
+        <article class="card" aria-label="Ad Script Revamp">
+          <div class="thumb" role="img" aria-label="Ad Script Revamp placeholder">
+            <span><span class="dot"></span> Ad Script Revamp</span>
+          </div>
+          <div class="card-body">
+            <div class="caption">Ad Script Revamp <small>Refocused hook + objection bridge</small></div>
+            <p style="color:#5e6480; margin:0;">Reduced friction and improved message clarity to lift CTR & lead quality.</p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card" aria-label="Funnel Design">
+          <div class="thumb" role="img" aria-label="Funnel Design placeholder">
+            <span><span class="dot"></span> Funnel Design</span>
+          </div>
+          <div class="card-body">
+            <div class="caption">Funnel Design <small>Traffic → Booked Calls</small></div>
+            <p style="color:#5e6480; margin:0;">Optimized steps & micro-copy for steady conversions.</p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card" aria-label="Landing Page Copy">
+          <div class="thumb" role="img" aria-label="Landing Page Copy placeholder">
+            <span><span class="dot"></span> Landing Page Copy</span>
+          </div>
+          <div class="card-body">
+            <div class="caption">Landing Page Copy <small>Value-first narrative</small></div>
+            <p style="color:#5e6480; margin:0;">Clear promise, proof, and path to action — without hype.</p>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="card" aria-label="Business Strategy">
+          <div class="thumb" role="img" aria-label="Business Strategy placeholder">
+            <span><span class="dot"></span> Business Strategy</span>
+          </div>
+          <div class="card-body">
+            <div class="caption">Business Strategy <small>Simplified for growth</small></div>
+            <p style="color:#5e6480; margin:0;">Diagnosed chokepoints; built a clear 90-day roadmap.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= SERVICES ======= -->
+  <section id="services" aria-label="What I Do">
+    <div class="container">
+      <span class="kicker">Services</span>
+      <h2>What I Do</h2>
+      <div class="spacer-xs"></div>
+      <div class="bullets">
+        <div class="bullet">Write sales scripts that convert without sounding salesy</div>
+        <div class="bullet">Build optimized funnels that turn traffic into clients</div>
+        <div class="bullet">Restructure ad scripts for maximum ROI</div>
+        <div class="bullet">Simplify business strategies so growth feels clear, not chaotic</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= TESTIMONIALS (optional) ======= -->
+  <section id="testimonials" aria-label="Testimonials">
+    <div class="container">
+      <span class="kicker">Social Proof</span>
+      <h2>Kind Words</h2>
+      <div class="spacer-xs"></div>
+      <div class="quotes">
+        <blockquote class="quote">
+          “Working with [Your Name] changed how we attract clients.”
+          <div class="who">— SaaS Founder</div>
+        </blockquote>
+        <blockquote class="quote">
+          “The funnel cleanup gave us consistency — finally. Booked calls doubled.”
+          <div class="who">— Agency Owner</div>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= CTA ======= -->
+  <section id="contact" aria-label="Call to Action">
+    <div class="container">
+      <div class="cta-wrap">
+        <h3>Ready to Build Consistency?</h3>
+        <p class="stack" style="margin:6px 0 0; color:#d9def8;">
+          Let’s turn your offer into a system that wins clients.
+        </p>
+        <div class="cta-actions">
+          <!-- Replace the href with your Calendly or WhatsApp link -->
+          <a class="btn btn-primary" href="https://wa.me/2340000000000?text=Hi!%20I%27d%20like%20to%20book%20a%20growth%20strategy%20call." target="_blank" rel="noopener">Book a Call</a>
+          <a class="btn btn-dark-outline" href="#home">Back to Top</a>
+        </div>
+      </div>
+      <footer class="small center">
+        © <span id="year"></span> [Your Name]. All rights reserved.
+      </footer>
+    </div>
+  </section>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#nav-menu');
+    toggle?.addEventListener('click', () => {
+      nav.classList.toggle('show');
+      const expanded = toggle.getAttribute('aria-expanded') === 'true' || false;
+      toggle.setAttribute('aria-expanded', String(!expanded));
+    });
+
+    // Close mobile menu after clicking a link
+    nav?.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=> {
+        nav.classList.remove('show');
+        toggle.setAttribute('aria-expanded','false');
+      })
+    });
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
